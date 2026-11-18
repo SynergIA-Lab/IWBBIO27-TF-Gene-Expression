@@ -1,0 +1,30 @@
+[project]
+name = "regulatory-biomarker-transfer"
+version = "0.1.0"
+description = "Cross-cohort evaluation of TF activity versus gene expression prognostic biomarkers"
+requires-python = ">=3.10"
+dependencies = [
+  "numpy",
+  "pandas",
+  "scipy",
+  "scikit-learn",
+  "pyyaml",
+  "joblib",
+  "decoupler",
+  "omnipath",
+  "scikit-survival",
+  "snakemake",
+  "GEOparse",
+  "openpyxl",
+]
+
+[project.optional-dependencies]
+test = ["pytest"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]
+addopts = "-q"
+
+[tool.setuptools.packages.find]
+where = ["src"]
