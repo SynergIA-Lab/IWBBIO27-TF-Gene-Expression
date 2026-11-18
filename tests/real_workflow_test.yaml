@@ -1,0 +1,32 @@
+# Exercises the real-data rules on synthetic fixtures:
+#   snakemake --cores 4 --configfile tests/real_workflow_test.yaml real
+real:
+  active_cancers: [FIX]
+  representations: [gene_expression, tf_expression, collectri_ulm, dorothea_viper]
+  panel_size: 5
+  min_regulon_targets: 4
+  min_expression: 1.0
+  min_fraction: 0.2
+  regulons:
+    collectri: tests/fixtures/collectri_fixture.tsv
+    dorothea: tests/fixtures/dorothea_fixture.tsv
+  cancers:
+    FIX:
+      training: FIX_TCGA
+      cohorts:
+        FIX_TCGA:
+          expression: tests/fixtures/expression_tcga.tsv
+          gene_map: tests/fixtures/gene_map.tsv
+          platform: rnaseq
+          clinical: {PFI: tests/fixtures/clinical_tcga.tsv}
+        FIX_GEO:
+          expression: tests/fixtures/expression_geo.tsv
+          gene_map: tests/fixtures/gene_map.tsv
+          platform: microarray
+          clinical: {RFS: tests/fixtures/clinical_geo.tsv}
+      analyses:
+        FIX_PFI: {endpoint: PFI, validation: {FIX_GEO: RFS}}
+min_confirmatory_events: 25
+n_bootstrap: 100
+n_stability_resamples: 10
+rsf_n_estimators: 50
