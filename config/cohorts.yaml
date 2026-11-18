@@ -1,0 +1,55 @@
+cohorts:
+  TCGA_BRCA:
+    cancer: BRCA
+    role: training
+    platform_class: rnaseq
+    endpoint: PFI
+    source: GDC
+  TCGA_LUAD:
+    cancer: LUAD
+    role: training
+    platform_class: rnaseq
+    endpoint: PFI
+    source: GDC
+  TCGA_COAD:
+    cancer: COAD
+    role: training
+    platform_class: rnaseq
+    endpoint: PFI
+    source: GDC
+  GSE31210:
+    cancer: LUAD
+    role: validation
+    platform_class: microarray
+    endpoint: RFS
+    source: GEO
+  GSE72094:
+    cancer: LUAD
+    role: validation
+    platform_class: microarray
+    endpoint: OS
+    source: GEO
+  GSE39582:
+    cancer: COAD
+    role: validation
+    platform_class: microarray
+    endpoint: RFS
+    source: GEO
+  GSE17536:
+    cancer: COAD
+    role: validation
+    platform_class: microarray
+    endpoint: OS
+    source: GEO
+  GSE20685:
+    cancer: BRCA
+    role: validation
+    platform_class: microarray
+    endpoint: DMFS  # metastasis-free survival; progression class, pairs with TCGA PFI
+    source: GEO
+  GSE96058:
+    cancer: BRCA
+    role: validation
+    platform_class: rnaseq
+    endpoint: OS  # SCAN-B; expression from supplementary log2(FPKM+0.1) matrix
+    source: GEO

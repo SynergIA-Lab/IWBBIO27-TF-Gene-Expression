@@ -1,0 +1,113 @@
+feature_panel_size: 25
+harmonization: cohort_zscore
+min_regulon_targets: 5
+min_confirmatory_events: 50
+random_seed: 20261026
+time_horizons_days: [365, 1095, 1825]
+primary_l1_ratio: 0.05
+lasso_l1_ratio: 0.95
+cv_splits: 5
+rsf_n_estimators: 500
+n_bootstrap: 1000
+n_stability_resamples: 50
+internal_cv_repeats: 5   # repeats of the nested 5-fold CV on TCGA (transfer-gap analysis)
+primary_comparisons:
+  - [collectri_ulm, gene_expression]
+  - [collectri_ulm, tf_expression]
+representations:
+  - gene_expression
+  - tf_expression
+  - collectri_ulm
+  - dorothea_viper
+  - aracne_activity
+aracne:
+  jar: null
+  java_memory: 5G
+  bootstraps: 100
+  pvalue: 1e-8
+# Fixture-only overrides (synthetic data is small)
+fixture:
+  panel_size: 5
+  min_regulon_targets: 4
+  min_confirmatory_events: 25
+  rsf_n_estimators: 50
+  n_bootstrap: 200
+  n_stability_resamples: 20
+  representations: [gene_expression, tf_expression, collectri_ulm, dorothea_viper]
+cindex_tau_days: 1825   # common truncation (5 years) for IPCW C-index across cohorts
+
+# ---------------------------------------------------------------- real analyses
+real:
+  representations: [gene_expression, tf_expression, collectri_ulm, dorothea_viper]
+  panel_size: 25
+  min_regulon_targets: 5
+  min_expression: 1.0      # log2(TPM+1) on TCGA ...
+  min_fraction: 0.2        # ... in at least 20% of TCGA patients
+  regulons:
+    collectri: resources/regulons/collectri.tsv
+    dorothea: resources/regulons/dorothea_abc.tsv
+  # active_cancers: [LUAD]   # uncomment to run only some cancers while others are being downloaded
+  cancers:
+    LUAD:
+      training: TCGA_LUAD
+      cohorts:
+        TCGA_LUAD:
+          expression: data/raw/TCGA_LUAD/expression.tsv
+          gene_map: data/raw/TCGA_LUAD/gene_map.tsv
+          platform: rnaseq
+          clinical: {PFI: data/raw/TCGA_LUAD/clinical_PFI.tsv, OS: data/raw/TCGA_LUAD/clinical_OS.tsv}
+        GSE31210:
+          expression: data/raw/GSE31210/expression.tsv
+          gene_map: data/raw/GSE31210/gene_map.tsv
+          platform: microarray
+          clinical: {RFS: data/raw/GSE31210/clinical.tsv}
+        GSE72094:
+          expression: data/raw/GSE72094/expression.tsv
+          gene_map: data/raw/GSE72094/gene_map.tsv
+          platform: microarray
+          clinical: {OS: data/raw/GSE72094/clinical.tsv}
+      analyses:
+        LUAD_PFI: {endpoint: PFI, validation: {GSE31210: RFS}}
+        LUAD_OS: {endpoint: OS, validation: {GSE72094: OS}}
+    BRCA:
+      training: TCGA_BRCA
+      cohorts:
+        TCGA_BRCA:
+          expression: data/raw/TCGA_BRCA/expression.tsv
+          gene_map: data/raw/TCGA_BRCA/gene_map.tsv
+          platform: rnaseq
+          clinical: {PFI: data/raw/TCGA_BRCA/clinical_PFI.tsv, OS: data/raw/TCGA_BRCA/clinical_OS.tsv}
+        GSE20685:
+          expression: data/raw/GSE20685/expression.tsv
+          gene_map: data/raw/GSE20685/gene_map.tsv
+          platform: microarray
+          clinical: {DMFS: data/raw/GSE20685/clinical.tsv}
+        GSE96058:
+          expression: data/raw/GSE96058/expression.tsv
+          gene_map: data/raw/GSE96058/gene_map.tsv
+          platform: rnaseq
+          clinical: {OS: data/raw/GSE96058/clinical.tsv}
+      analyses:
+        BRCA_PFI: {endpoint: PFI, validation: {GSE20685: DMFS}}
+        BRCA_OS: {endpoint: OS, validation: {GSE96058: OS}}
+    COAD:
+      training: TCGA_COAD
+      cohorts:
+        TCGA_COAD:
+          expression: data/raw/TCGA_COAD/expression.tsv
+          gene_map: data/raw/TCGA_COAD/gene_map.tsv
+          platform: rnaseq
+          clinical: {PFI: data/raw/TCGA_COAD/clinical_PFI.tsv, OS: data/raw/TCGA_COAD/clinical_OS.tsv}
+        GSE39582:
+          expression: data/raw/GSE39582/expression.tsv
+          gene_map: data/raw/GSE39582/gene_map.tsv
+          platform: microarray
+          clinical: {RFS: data/raw/GSE39582/clinical.tsv}
+        GSE17536:
+          expression: data/raw/GSE17536/expression.tsv
+          gene_map: data/raw/GSE17536/gene_map.tsv
+          platform: microarray
+          clinical: {OS: data/raw/GSE17536/clinical.tsv}
+      analyses:
+        COAD_PFI: {endpoint: PFI, validation: {GSE39582: RFS}}
+        COAD_OS: {endpoint: OS, validation: {GSE17536: OS}}

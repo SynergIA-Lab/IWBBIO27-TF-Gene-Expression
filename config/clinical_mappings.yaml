@@ -1,0 +1,92 @@
+# Curated clinical mapping per GEO cohort, verified against
+# data/raw/<GSE>/characteristics_overview.tsv (2026-10-27).
+# Column entries are characteristic keys; values split by GEOparse across several
+# 'characteristics_ch1.<i>.<key>' columns are coalesced (conflicts raise an error).
+GSE31210:
+  status: VERIFIED
+  endpoint: RFS
+  time_column: "days before relapse/censor"
+  time_unit: days
+  event_column: "relapse"
+  event_values: ["relapsed"]
+  censor_values: ["not relapsed"]
+  age_column: ["age (years)", "age"]   # a few samples use the key 'age'
+  stage_column: "pathological stage"   # IA / IB / II
+  sample_filter:
+    tissue: ["primary lung tumor"]     # drops the 20 normal lung samples
+    # standard exclusion of the original study (incomplete resection or adjuvant therapy)
+    "exclude for prognosis analysis due to incomplete resection or adjuvant therapy": ["none"]
+  # NOTE: the key 'months before relapse/censor' appears twice per sample (the second one
+  # actually holds death months); it is deliberately not used, days columns are.
+GSE72094:
+  status: VERIFIED
+  endpoint: OS
+  time_column: "survival_time_in_days"
+  time_unit: days
+  event_column: "vital_status"
+  event_values: ["dead"]
+  censor_values: ["alive"]              # 'NA' -> dropped
+  age_column: "age_at_diagnosis"
+  stage_column: "Stage"                 # 1A, 1B, 2B, 4, NA (arabic numerals)
+
+# ---------------------------------------------------------------------------------
+# BRCA and COAD: DRAFT mappings written from the published series descriptions.
+# Every key below must be checked against data/raw/<GSE>/characteristics_overview.tsv
+# (exact key spelling, event labels, time unit) before switching status to VERIFIED.
+GSE20685:
+  status: VERIFIED   # checked against characteristics_overview.tsv (2026-10-29)
+  endpoint: DMFS
+  # time_to_metastasis is only recorded for patients with metastasis; censored patients
+  # use follow_up_duration. Events lacking a metastasis time are dropped (and counted).
+  time_column: "follow_up_duration (years)"
+  event_time_column: "time_to_metastasis (years)"
+  time_unit: years
+  event_column: "event_metastasis"
+  event_values: ["1"]
+  censor_values: ["0"]
+  age_column: "age at diagnosis"
+  sample_filter:
+    m_stage: ["0"]            # metastatic at diagnosis cannot have a metastasis-free interval
+  # no stage group in GEO: AJCC 7th breast stage group derived from T/N/M (I-III)
+  stage_from_tnm: {t: "t_stage", n: "n_stage", m: "m_stage"}
+GSE96058:
+  status: VERIFIED   # checked against characteristics_overview.tsv (2026-10-29)
+  endpoint: OS
+  time_column: "overall survival days"
+  time_unit: days
+  event_column: "overall survival event"
+  event_values: ["1"]
+  censor_values: ["0"]
+  age_column: "age at diagnosis"
+  # no stage in GEO: AJCC 7th group derived from tumour size (mm -> T1/T2/T3) and lymph
+  # node group (N0/N1/N2+); M0 assumed (SCAN-B primary operable tumours). T4 cannot be
+  # derived from size, so a few stage III cases may be labelled II. Exploratory use only
+  # (clinical baseline / added value).
+  stage_from_tnm:
+    t_size_mm: "tumor size"
+    n: "lymph node group"
+    n_map: {NodeNegative: "0", SubMicroMet: "0", 1to3: "1", 4toX: "2"}
+  # technical replicates were dropped at download (--drop-columns-regex repl)
+GSE39582:
+  status: VERIFIED   # checked against characteristics_overview.tsv (2026-10-29)
+  endpoint: RFS
+  time_column: "rfs.delay"            # months (os.delay carries the explicit unit)
+  time_unit: months
+  event_column: "rfs.event"
+  event_values: ["1"]
+  censor_values: ["0"]                 # 'N/A' -> dropped
+  age_column: "age.at.diagnosis (year)"
+  stage_column: "tnm.stage"
+  sample_filter:
+    dataset: ["discovery", "validation"]   # drops the 19 non-tumoral mucosa samples
+    tnm.stage: ["1", "2", "3"]             # relapse is undefined for stage IV (and stage 0)
+GSE17536:
+  status: VERIFIED   # checked against characteristics_overview.tsv (2026-10-29)
+  endpoint: OS
+  time_column: "overall survival follow-up time"   # months
+  time_unit: months
+  event_column: "overall_event (death from any cause)"
+  event_values: ["death"]
+  censor_values: ["no death"]
+  age_column: "age"
+  stage_column: "ajcc_stage"           # 1-4
