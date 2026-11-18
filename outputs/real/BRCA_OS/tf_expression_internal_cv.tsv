@@ -1,0 +1,2 @@
+analysis	representation	k	n_patients	n_events	repeats	n_folds	internal_cindex_mean	internal_cindex_sd	internal_cindex_median	internal_cindex_q025	internal_cindex_q975
+BRCA_OS	tf_expression	25	1080	151	5	25	0.5899989425444108	0.07683438417864995	0.5943510585623005	0.4761156759954649	0.7297097944590981

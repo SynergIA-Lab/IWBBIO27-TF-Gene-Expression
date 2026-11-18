@@ -1,0 +1,2 @@
+cohort	platform_class	endpoint	n_features	n_samples	missing_values	n_patients	n_events	n_censored	censoring_fraction	analysis_status	stage:II	stage:III	stage:I	stage:IV	stage:missing
+TCGA_COAD	rnaseq	PFI	12736	438	0	438	117	321	0.7328767123287672	confirmatory_eligible	168	126	73	60	11

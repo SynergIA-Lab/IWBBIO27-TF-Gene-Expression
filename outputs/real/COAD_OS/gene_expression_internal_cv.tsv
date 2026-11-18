@@ -1,0 +1,2 @@
+analysis	representation	k	n_patients	n_events	repeats	n_folds	internal_cindex_mean	internal_cindex_sd	internal_cindex_median	internal_cindex_q025	internal_cindex_q975
+COAD_OS	gene_expression	25	439	98	5	25	0.5461360592015778	0.07912086563543053	0.5502168073134078	0.38757569978696654	0.6753214502454041

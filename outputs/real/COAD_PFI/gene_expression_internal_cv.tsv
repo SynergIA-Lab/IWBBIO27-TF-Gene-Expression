@@ -1,0 +1,2 @@
+analysis	representation	k	n_patients	n_events	repeats	n_folds	internal_cindex_mean	internal_cindex_sd	internal_cindex_median	internal_cindex_q025	internal_cindex_q975
+COAD_PFI	gene_expression	25	438	117	5	25	0.6028955708597271	0.060793354292892565	0.5988210244730761	0.5031657622288647	0.6979415392483799

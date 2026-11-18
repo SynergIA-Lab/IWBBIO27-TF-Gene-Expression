@@ -1,0 +1,2 @@
+analysis	representation	k	n_patients	n_events	repeats	n_folds	internal_cindex_mean	internal_cindex_sd	internal_cindex_median	internal_cindex_q025	internal_cindex_q975
+COAD_OS	tf_expression	25	439	98	5	25	0.5743819479522538	0.08095397319204437	0.5805405891220456	0.4088977534483856	0.7021239730018477

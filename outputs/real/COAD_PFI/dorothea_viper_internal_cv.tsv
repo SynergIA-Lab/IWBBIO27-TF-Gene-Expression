@@ -1,0 +1,2 @@
+analysis	representation	k	n_patients	n_events	repeats	n_folds	internal_cindex_mean	internal_cindex_sd	internal_cindex_median	internal_cindex_q025	internal_cindex_q975
+COAD_PFI	dorothea_viper	25	438	117	5	25	0.5605041577673296	0.05325886865917671	0.5469895777702102	0.4907170633602649	0.6626552900113408

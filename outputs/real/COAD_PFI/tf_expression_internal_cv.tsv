@@ -1,0 +1,2 @@
+analysis	representation	k	n_patients	n_events	repeats	n_folds	internal_cindex_mean	internal_cindex_sd	internal_cindex_median	internal_cindex_q025	internal_cindex_q975
+COAD_PFI	tf_expression	25	438	117	5	25	0.5951271802588664	0.057765416667836855	0.59053042962446	0.4853040291865388	0.6912970546176674

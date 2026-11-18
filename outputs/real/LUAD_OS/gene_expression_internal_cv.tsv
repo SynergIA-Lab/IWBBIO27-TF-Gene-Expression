@@ -1,0 +1,2 @@
+analysis	representation	k	n_patients	n_events	repeats	n_folds	internal_cindex_mean	internal_cindex_sd	internal_cindex_median	internal_cindex_q025	internal_cindex_q975
+LUAD_OS	gene_expression	25	504	182	5	25	0.6024000453995462	0.03821297293979037	0.6057752454951983	0.5348158224935415	0.6663320739698375

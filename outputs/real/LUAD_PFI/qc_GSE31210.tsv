@@ -1,0 +1,2 @@
+cohort	platform_class	endpoint	n_features	n_samples	missing_values	n_patients	n_events	n_censored	censoring_fraction	analysis_status	stage:I	stage:II
+GSE31210	microarray	RFS	12650	204	0	204	54	150	0.7352941176470589	confirmatory_eligible	162	42

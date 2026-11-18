@@ -1,0 +1,2 @@
+cohort	platform_class	endpoint	n_features	n_samples	missing_values	n_patients	n_events	n_censored	censoring_fraction	analysis_status	stage:II	stage:III	stage:I	stage:missing	stage:IV
+TCGA_BRCA	rnaseq	OS	13100	1080	0	1080	151	929	0.8601851851851852	confirmatory_eligible	610	245	181	24	20

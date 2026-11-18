@@ -1,0 +1,2 @@
+analysis	representation	k	n_patients	n_events	repeats	n_folds	internal_cindex_mean	internal_cindex_sd	internal_cindex_median	internal_cindex_q025	internal_cindex_q975
+COAD_PFI	collectri_ulm	25	438	117	5	25	0.6100772810697765	0.04433648351560955	0.6160009284996162	0.5420084902826368	0.6894096955457097

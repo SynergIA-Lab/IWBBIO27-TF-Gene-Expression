@@ -1,0 +1,2 @@
+cohort	platform_class	endpoint	n_features	n_samples	missing_values	n_patients	n_events	n_censored	censoring_fraction	analysis_status	stage:I	stage:II	stage:III	stage:IV	stage:missing
+GSE72094	microarray	OS	12650	398	0	398	113	285	0.7160804020100503	confirmatory_eligible	254	67	57	15	5

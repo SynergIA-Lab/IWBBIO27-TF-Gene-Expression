@@ -1,0 +1,2 @@
+analysis	representation	k	n_patients	n_events	repeats	n_folds	internal_cindex_mean	internal_cindex_sd	internal_cindex_median	internal_cindex_q025	internal_cindex_q975
+BRCA_OS	collectri_ulm	25	1080	151	5	25	0.5649498404692248	0.06210677958464323	0.5557610786232162	0.47125235145438615	0.6729137572146314

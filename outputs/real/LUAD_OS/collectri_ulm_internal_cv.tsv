@@ -1,0 +1,2 @@
+analysis	representation	k	n_patients	n_events	repeats	n_folds	internal_cindex_mean	internal_cindex_sd	internal_cindex_median	internal_cindex_q025	internal_cindex_q975
+LUAD_OS	collectri_ulm	25	504	182	5	25	0.5974771726061207	0.04609627442799465	0.5960998087939843	0.495729425318156	0.6589067522721211

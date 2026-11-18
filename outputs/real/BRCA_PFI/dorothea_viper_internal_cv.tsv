@@ -1,0 +1,2 @@
+analysis	representation	k	n_patients	n_events	repeats	n_folds	internal_cindex_mean	internal_cindex_sd	internal_cindex_median	internal_cindex_q025	internal_cindex_q975
+BRCA_PFI	dorothea_viper	25	1080	145	5	25	0.5762722850726273	0.058802164322570245	0.5723420696274824	0.48233950839680123	0.6779637649148604
